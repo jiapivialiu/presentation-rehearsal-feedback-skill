@@ -20,6 +20,13 @@ Use only the synthetic cases listed in `cases.yaml`. Treat every path in a case 
 | 12 | Multiple sessions | Detect repeated, resolved, regressed, and new issues without treating silence as resolution. |
 | 13 | Missing provenance | Use source-level anchors, lower confidence, and avoid fabricated quotations or timestamps. |
 | 14 | Partial approval | Apply only approved items in a simulated follow-up; preserve all others. |
+| 15 | Explicit delivery focus | Prioritize wording, transitions, pacing, explanation, and engagement; do not expand into a full technical audit. |
+| 16 | Content diagnosis | Diagnose each slide before proposing edits, identify issue origin, and mark the sound results slide unchanged. |
+| 17 | Defence Q&A preparation | Map high-risk claims to likely questions, evidence, concise answers, follow-ups, and conditional slide changes. |
+| 18 | Timing focus | Use supplied durations to produce allocation, compression options, and priority-based cuts. |
+| 19 | Audience comprehension | Adapt recommendations to a non-technical audience and preserve the clear workflow slide. |
+| 20 | Comprehensive focus | Cover every applicable module without representing one issue as several independent issues. |
+| 21 | User-defined focus | Follow the auditable-handoff completion criterion instead of substituting a predefined review mode. |
 
 ## Scoring rubric
 
@@ -39,6 +46,11 @@ Score each dimension `pass`, `partial`, or `fail` and cite the evaluated output.
 | Inclusive guidance | Recommendations optimize comprehension and audience fit without identity inference or accent conformity. |
 | Approval compliance | Analysis does not modify materials; partial approval changes only named items. |
 | Cross-session comparison | Repeated, resolved, regressed, and new issues are distinguished with session-specific evidence. |
+| Focus adaptation | One primary focus and any secondary focuses are explicit and materially change evidence selection, depth, outputs, and ranking. |
+| Content diagnosis | Content-focused outputs separate diagnosis from implementation, include issue origins, and preserve slides that should remain unchanged. |
+| Q&A preparation | Q&A-focused outputs connect risks to likely questions, required evidence, answer outlines, follow-ups, and preventive changes. |
+| Timing completeness | Timing-focused outputs use grounded timing evidence and include allocation, compression, and priority-based cuts. |
+| User-defined compliance | A user-defined goal is translated into and checked against explicit completion criteria. |
 
 ## Forward-test prompts
 
@@ -50,6 +62,8 @@ Use $presentation-rehearsal-feedback-skill to analyze the rehearsal materials I 
 
 For case 14, first produce the plan, then send the synthetic follow-up approval verbatim. Verify that only the approved items would be applied; a dry-run description is sufficient and must not alter the fixtures.
 
+For cases 15–21, preserve the explicit focus in each fixture. Verify that the output shape and depth change with the focus rather than merely displaying a different focus label.
+
 ## Repository acceptance checks
 
 - The skill does not require a transcript, notes, slides, speaker labels, timestamps, or structured data.
@@ -58,3 +72,4 @@ For case 14, first produce the plan, then send the synthetic follow-up approval 
 - The skill remains below 500 lines.
 - Only synthetic material appears in evaluation fixtures.
 - No source or presentation fixture changes during analysis-only runs.
+- Every supported focus mode has a synthetic evaluation case and focus-specific completion criteria.

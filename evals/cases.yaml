@@ -27,3 +27,17 @@ cases:
     inputs: ["cases/13-missing-provenance.txt"]
   - case_id: "14-partial-user-approval"
     inputs: ["cases/14-analysis-and-approval.md"]
+  - case_id: "15-explicit-delivery-focus"
+    inputs: ["cases/15-delivery-focus.md"]
+  - case_id: "16-content-diagnosis"
+    inputs: ["cases/16-content-focus.md"]
+  - case_id: "17-defence-qa-preparation"
+    inputs: ["cases/17-qa-defence.md"]
+  - case_id: "18-timing-focus"
+    inputs: ["cases/18-timing-focus.md"]
+  - case_id: "19-audience-comprehension"
+    inputs: ["cases/19-audience-comprehension.md"]
+  - case_id: "20-comprehensive-focus"
+    inputs: ["cases/20-comprehensive-focus.md"]
+  - case_id: "21-user-defined-focus"
+    inputs: ["cases/21-user-defined-focus.md"]
