@@ -1,4 +1,4 @@
 interface:
   display_name: "Presentation Rehearsal Feedback"
   short_description: "Turn rehearsal evidence into a revision plan"
-  default_prompt: "Use $presentation-rehearsal-feedback-skill to synthesize my selected rehearsal materials into an evidence-grounded, prioritized revision plan."
+  default_prompt: "Use $presentation-rehearsal-feedback-skill to analyze my selected rehearsal materials, adapt to the rehearsal focus, and produce an evidence-grounded prioritized plan."

@@ -73,6 +73,20 @@ class RepositoryTests(unittest.TestCase):
             self.assertIn(install_path, text)
         for platform in ("Codex", "Cursor", "Claude Code", "GitHub Copilot"):
             self.assertIn(platform, text)
+            self.assertIn(f"### Download for {platform}", text)
+        expected_user_install_paths = (
+            "~/.agents/skills/presentation-rehearsal-feedback-skill",
+            "~/.cursor/skills/presentation-rehearsal-feedback-skill",
+            "~/.claude/skills/presentation-rehearsal-feedback-skill",
+            "~/.copilot/skills/presentation-rehearsal-feedback-skill",
+        )
+        for install_path in expected_user_install_paths:
+            self.assertIn(install_path, text)
+        archive_url = (
+            "https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/"
+            "archive/refs/heads/main.tar.gz"
+        )
+        self.assertEqual(text.count(archive_url), 8)
         self.assertIn("Known limitations", text)
         self.assertIn("Tested compatibility", text)
 
@@ -99,13 +113,13 @@ class RepositoryTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         self.assertIn("licensed under the [MIT License](LICENSE)", readme)
 
-    def test_fourteen_declared_cases_exist(self) -> None:
+    def test_twenty_one_declared_cases_exist(self) -> None:
         text = CASES.read_text(encoding="utf-8")
         case_ids = re.findall(r'case_id: "([^"]+)"', text)
         input_lists = re.findall(r"inputs: \[([^]]+)\]", text)
-        self.assertEqual(len(case_ids), 14)
-        self.assertEqual(len(set(case_ids)), 14)
-        self.assertEqual(len(input_lists), 14)
+        self.assertEqual(len(case_ids), 21)
+        self.assertEqual(len(set(case_ids)), 21)
+        self.assertEqual(len(input_lists), 21)
         for raw_list in input_lists:
             paths = re.findall(r'"([^"]+)"', raw_list)
             self.assertTrue(paths)
@@ -138,6 +152,63 @@ class RepositoryTests(unittest.TestCase):
         self.assertIn("partial approval", text)
         self.assertIn("sounding \"more native.\"", text)
         self.assertIn("code-switching", text)
+
+    def test_rehearsal_focus_routing_is_explicit(self) -> None:
+        skill = SKILL.read_text(encoding="utf-8")
+        reference_path = ROOT / "references" / "rehearsal-focus-modules.md"
+        reference = reference_path.read_text(encoding="utf-8")
+        self.assertIn("references/rehearsal-focus-modules.md", skill)
+        for focus in (
+            "delivery",
+            "content",
+            "qa-prep",
+            "timing",
+            "audience-comprehension",
+            "comprehensive",
+            "user-defined",
+        ):
+            self.assertIn(f"`{focus}`", reference)
+        self.assertIn("one primary focus and zero or more secondary focuses", skill.lower())
+        self.assertIn("do not default mechanically to a comprehensive audit", skill.lower())
+        self.assertIn("materially change", skill.lower())
+
+    def test_content_and_qa_modules_are_complete(self) -> None:
+        skill = SKILL.read_text(encoding="utf-8")
+        reference = (ROOT / "references" / "rehearsal-focus-modules.md").read_text(
+            encoding="utf-8"
+        )
+        template = (ROOT / "assets" / "revision-plan-template.md").read_text(
+            encoding="utf-8"
+        )
+        issue_origins = (
+            "participant_feedback",
+            "presenter_notes",
+            "multiple_sources",
+            "agent_detected",
+            "mixed",
+        )
+        for origin in issue_origins:
+            self.assertIn(origin, skill)
+            self.assertIn(origin, reference)
+        self.assertIn("Slide-content issue inventory", template)
+        self.assertIn("Q&A preparation", template)
+        for phrase in (
+            "likely question",
+            "evidence needed",
+            "concise answer outline",
+            "possible follow-up question",
+            "oral discussion",
+        ):
+            self.assertIn(phrase, reference)
+
+    def test_focus_eval_cases_cover_every_mode(self) -> None:
+        checklist = (ROOT / "evals" / "evaluation-checklist.md").read_text(
+            encoding="utf-8"
+        )
+        cases = CASES.read_text(encoding="utf-8")
+        for case_id in range(15, 22):
+            self.assertRegex(cases, rf'case_id: "{case_id:02d}-')
+            self.assertIn(f"| {case_id} |", checklist)
 
 
 if __name__ == "__main__":

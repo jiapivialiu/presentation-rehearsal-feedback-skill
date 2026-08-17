@@ -1,6 +1,6 @@
 ---
 name: presentation-rehearsal-feedback-skill
-description: Synthesize evidence-grounded feedback from presentation rehearsals and produce prioritized recommendations for delivery, content, structure, timing, slides, visual materials, accessibility, and audience engagement. Use for presentation rehearsal feedback from raw, cleaned, processed, speaker-labelled, or unlabelled transcripts; handwritten or typed notes; reviewer comments; audience questions; facilitator or timing notes; delivery coaching; slide revision planning; feedback reconciliation; and comparison across rehearsal sessions for any presentation context.
+description: Synthesize evidence-grounded presentation rehearsal feedback and adapt the analysis to the rehearsal's purpose, including delivery coaching, systematic slide-content diagnosis, Q&A preparation, timing, audience comprehension, narrative review, revision validation, and prioritized improvement planning. Use with raw, cleaned, processed, speaker-labelled, or unlabelled transcripts; handwritten or typed notes; reviewer comments; audience questions; facilitator or timing notes; slides; and comparisons across rehearsal sessions for any presentation context.
 ---
 
 # Presentation Rehearsal Feedback
@@ -22,11 +22,20 @@ Turn user-designated rehearsal materials into an auditable review and revision p
 ### 1. Establish the task and inputs
 
 - List the exact user-designated sources and the requested outcome.
-- Capture presentation type, purpose, audience, target duration, language, venue, delivery mode, and constraints when supplied. Do not block analysis when they are absent.
-- Identify whether the request covers synthesis, coaching, slide review, timing, comparison, implementation, or a combination.
+- Capture `presentation_type`, `primary_focus`, optional `secondary_focuses`, `target_audience`, `presentation_goal`, `time_limit`, language, venue, delivery mode, constraints, and any sections or slides receiving special attention.
+- Identify whether the user wants feedback synthesis, independent analysis, or both, and whether the request covers coaching, slide review, timing, comparison, implementation, or another outcome.
+- Treat an explicitly stated focus as authoritative; do not override it based on the transcript or slides.
+- If focus is unstated, inspect the request and designated materials. Infer a likely focus only from strong evidence and state the inference. Ask one concise clarification question only when competing focus choices would materially change the output; otherwise proceed with a stated assumption.
+- Select one primary focus and zero or more secondary focuses. Do not default mechanically to a comprehensive audit.
 - Preserve source versions and note any ambiguity about which version was rehearsed.
 
-### 2. Inspect each source on its own terms
+### 2. Route analysis by rehearsal focus
+
+Use `delivery`, `content`, `qa-prep`, `timing`, `audience-comprehension`, `comprehensive`, or `user-defined`. Read [references/rehearsal-focus-modules.md](references/rehearsal-focus-modules.md) and apply the selected module deeply for the primary focus and proportionally for secondary focuses.
+
+Make the focus materially change which evidence is prioritized, analysis depth, outputs, and recommendation ranking. For example, do not run an exhaustive technical-claim audit in delivery mode unless requested; perform systematic slide-content diagnosis in content mode; produce a question-risk map in Q&A mode; and prioritize allocation and compression decisions in timing mode. In comprehensive mode, include every applicable module without duplicating issues.
+
+### 3. Inspect each source on its own terms
 
 - Determine structure from actual content rather than expecting predetermined fields.
 - Read structured and unstructured sources with the capabilities available for that format.
@@ -36,7 +45,7 @@ Turn user-designated rehearsal materials into an auditable review and revision p
 
 Create a small source register with a stable source label, filename or user-facing label, source type, session if known, and usable evidence anchors. Do not create a machine-readable artifact unless requested or useful for later comparison.
 
-### 3. Establish evidence provenance
+### 4. Establish evidence provenance
 
 Use the strongest anchor each source actually provides. Possible anchors include timestamp, segment ID, speaker label, user-supplied participant name, line, paragraph, heading, page, slide, note heading, bullet, filename, source label, or a short supported excerpt.
 
@@ -54,7 +63,7 @@ For every substantive item, keep these layers distinct:
 3. **Requested or implied action** — a change supported by the source.
 4. **Agent recommendation** — independently labelled advice based on the evidence and presentation goals.
 
-### 4. Extract atomic feedback
+### 5. Extract atomic feedback
 
 Create one item for each independently decidable issue. Do not treat every comment, question, or reaction as a requested change. Preserve praise and strengths that should remain unchanged.
 
@@ -72,7 +81,7 @@ Use these analytical aids when helpful; do not require them as input fields:
 
 Use `needs confirmation` for ambiguous attribution, uncertain wording, unresolved conflicts, weak evidence, or unclear slide mapping. Track whether discussion already resolved a question; use `no action` when no remaining change is supported.
 
-### 5. Reconcile evidence
+### 6. Reconcile evidence
 
 - Merge only semantically equivalent items that lead to the same decision; retain all supporting anchors.
 - Mark **consensus** when independent sources support the same issue and compatible action.
@@ -82,11 +91,11 @@ Use `needs confirmation` for ambiguous attribution, uncertain wording, unresolve
 - Separate explicit requests from inferred improvements and from the agent's own recommendations.
 - Flag unclear evidence, unresolved questions, and decisions requiring user judgment.
 
-### 6. Analyze the presentation
+### 7. Analyze the presentation
 
 Prioritize recommendations by evidence strength, likely audience impact, presentation goals, dependencies, and effort. Frequency may increase confidence but does not automatically make an issue urgent.
 
-When supported, assess:
+Assess only the dimensions relevant to the selected focus and supported by the materials:
 
 - **Delivery:** opening, conclusion, transitions, verbal explanations, terminology, pacing, emphasis, confidence cues, handling questions, audience interaction, and details to shorten or omit.
 - **Content and structure:** narrative, purpose, claims, support, ordering, signposting, likely confusion, missing context, and alignment with the audience.
@@ -96,28 +105,35 @@ When supported, assess:
 
 When slides or visual materials are supplied, review them in presentation order and map feedback to exact slides when grounded. Otherwise map to presentation topics or sections. For a requested complete slide-by-slide plan, include slides that should remain unchanged. Do not require or request slides for delivery-only analysis.
 
-### 7. Compare sessions when provided
+When `content` is primary or secondary, diagnose each relevant slide or section before proposing edits. Record its current purpose, content problem, why it matters, supporting evidence or reasoning, audience impact, question risk, correction, confidence, approval status, and whether confirmation is required. Assign every issue an `issue_origin`: `participant_feedback`, `presenter_notes`, `multiple_sources`, `agent_detected`, or `mixed`. Never attribute an independently detected issue to a participant; explain it cautiously, assign confidence, and request confirmation when it depends on subject-matter judgment. Explicitly mark slides whose content should remain unchanged.
+
+When `qa-prep` is primary or secondary, build a question-risk map and answer-preparation plan for high-risk claims, methods, results, decisions, and rehearsal moments. Keep defence-specific question categories conditional on a thesis or dissertation defence.
+
+### 8. Compare sessions when provided
 
 For multiple rehearsal sessions, keep source versions and sessions distinct. Identify repeated issues, resolved issues, regressions, new issues, changes in participant views, delivery or timing improvements, and differences associated with revisions. Do not mistake missing feedback in a later session for proof that an issue was resolved.
 
-### 8. Produce the review plan
+### 9. Produce the review plan
 
 Adapt the response to the user's request and evidence. Default to a readable report rather than mandatory JSON. Use structured JSON only when requested, needed for cross-session tracking, or materially useful to downstream work.
 
 Include, as applicable:
 
-1. scope, sources, context, and material limitations;
+1. scope, sources, context, selected primary and secondary focuses, focus assumptions, and material limitations;
 2. strengths to preserve;
 3. source-grounded synthesis by participant when attribution is reliable, otherwise by theme, source, section, or issue;
 4. prioritized delivery, content, structure, timing, slide, visual, accessibility, and engagement recommendations;
 5. slide-by-slide or section-by-section plan when relevant;
 6. consensus, reinforcement, conflicts, resolved issues, unresolved questions, and low-confidence observations;
 7. a decision log with tradeoffs, recommended option, alternatives, dependencies, status, and feedback intentionally not converted into action;
-8. a clear list of changes awaiting approval.
+8. a dedicated slide-content issue inventory when `content` is selected;
+9. a question-risk map and answer-preparation plan when `qa-prep` is selected;
+10. focus-specific timing, delivery, comprehension, comprehensive, or user-defined outputs required by the selected module;
+11. a clear list of changes awaiting approval.
 
 For a detailed written artifact, adapt [assets/revision-plan-template.md](assets/revision-plan-template.md) and remove inapplicable sections. Do not force empty sections or create a database-ready output by default.
 
-### 9. Respect the approval boundary
+### 10. Respect the approval boundary
 
 A request to review, analyze, synthesize, summarize, compare, coach, or create a plan authorizes analysis only.
 
@@ -140,6 +156,8 @@ Before editing any presentation, notes, script, or supporting material:
 
 ## Final quality check
 
+- The primary focus and any secondary focuses are explicit, and the output is materially adapted rather than a generic full analysis with a new heading.
+- The applicable completion criteria in `references/rehearsal-focus-modules.md` are satisfied.
 - Every substantive claim has a resolvable evidence anchor or is explicitly labelled as an agent recommendation.
 - Quotations, identities, timestamps, participant attribution, and slide mappings are supported.
 - Atomic items preserve evidence after deduplication.

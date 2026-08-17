@@ -19,6 +19,9 @@ Depending on the request and evidence, the skill can produce:
 - source-grounded feedback synthesis by participant, theme, source, section, or issue;
 - atomic feedback items that distinguish direct comments, questions, explicit requests, inferred improvements, and agent recommendations;
 - delivery, content, structure, timing, slide, visual, accessibility, and engagement recommendations;
+- rehearsal-focus routing for delivery, content, Q&A preparation, timing, audience comprehension, comprehensive, and user-defined goals;
+- systematic slide-content issue inventories that distinguish participant feedback from independently detected concerns;
+- question-risk maps and answer-preparation plans when Q&A is in scope;
 - consensus, reinforcement, conflict, uncertainty, unresolved-question, and decision logs;
 - slide-by-slide or section-by-section revision plans;
 - comparisons across multiple rehearsals;
@@ -34,6 +37,7 @@ Review, analysis, synthesis, comparison, coaching, and planning requests do not 
 - “These notes have no speaker labels or timestamps. Separate note-derived observations from your recommendations and flag weak provenance.”
 - “Compare the Spanish-English rehearsal notes with the timing log. Focus on audience comprehension without treating code-switching as a defect.”
 - “Apply only recommendations R2 and R5 from the plan; leave every other presentation file unchanged.”
+- “This is a thesis-defence Q&A rehearsal. Build a question-risk map and answer plan; do not turn it into a generic slide-design review.”
 
 ## Evidence-grounded workflow
 
@@ -64,6 +68,80 @@ Cursor and GitHub Copilot also support `.agents/skills/`; both document addition
 
 Install the complete folder rather than copying only `SKILL.md`, because the skill references `assets/revision-plan-template.md`.
 
+### Download for Codex
+
+Project-level installation (run from the target project root):
+
+```bash
+mkdir -p .agents/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C .agents/skills/presentation-rehearsal-feedback-skill
+```
+
+User-level installation:
+
+```bash
+mkdir -p ~/.agents/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C ~/.agents/skills/presentation-rehearsal-feedback-skill
+```
+
+### Download for Cursor
+
+Project-level installation (run from the target project root):
+
+```bash
+mkdir -p .cursor/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C .cursor/skills/presentation-rehearsal-feedback-skill
+```
+
+User-level installation:
+
+```bash
+mkdir -p ~/.cursor/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C ~/.cursor/skills/presentation-rehearsal-feedback-skill
+```
+
+### Download for Claude Code
+
+Project-level installation (run from the target project root):
+
+```bash
+mkdir -p .claude/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C .claude/skills/presentation-rehearsal-feedback-skill
+```
+
+User-level installation:
+
+```bash
+mkdir -p ~/.claude/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C ~/.claude/skills/presentation-rehearsal-feedback-skill
+```
+
+### Download for GitHub Copilot
+
+Project-level installation (run from the target project root):
+
+```bash
+mkdir -p .github/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C .github/skills/presentation-rehearsal-feedback-skill
+```
+
+User-level installation:
+
+```bash
+mkdir -p ~/.copilot/skills/presentation-rehearsal-feedback-skill
+curl -fsSL https://github.com/jiapivialiu/presentation-rehearsal-feedback-skill/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=1 -C ~/.copilot/skills/presentation-rehearsal-feedback-skill
+```
+
+These commands target macOS and Linux shells. They download the same canonical package for every agent and do not create platform-specific copies in this repository.
+
 After installation, verify discovery and invoke the skill explicitly once:
 
 - Codex: run `/skills` or mention `$presentation-rehearsal-feedback-skill` in the prompt.
@@ -72,12 +150,6 @@ After installation, verify discovery and invoke the skill explicitly once:
 - GitHub Copilot: open the Skills configuration or type `/skills`, then invoke `/presentation-rehearsal-feedback-skill` where slash-command invocation is available.
 
 Official references: [OpenAI Codex skills](https://learn.chatgpt.com/docs/build-skills), [Cursor Agent Skills](https://cursor.com/docs/skills), [Claude Code skills](https://code.claude.com/docs/en/skills), and [GitHub Copilot agent skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills).
-
-Generic installation steps:
-
-1. Clone or download this repository.
-2. Copy or clone the complete repository folder into the target agent’s project-level or user-level skills directory.
-3. Invoke the skill through the platform’s slash command or let the agent route to it automatically, and identify the exact materials to analyze.
 
 The portable core is [SKILL.md](SKILL.md). [agents/openai.yaml](agents/openai.yaml) is optional OpenAI-specific interface metadata and is not required by the core workflow.
 
@@ -89,7 +161,7 @@ The portable core is [SKILL.md](SKILL.md). [agents/openai.yaml](agents/openai.ya
 
 ## Evaluation
 
-Synthetic cases under [evals](evals) cover fourteen required scenarios using plain text, Markdown, JSON, JSONL, CSV, YAML, and a synthetic handwritten-note image. They test source grounding, attribution, action precision and coverage, unsupported claims, scope classification, consensus and conflict detection, uncertainty, inclusive guidance, approval compliance, and cross-session comparison.
+Synthetic cases under [evals](evals) cover twenty-one required scenarios using plain text, Markdown, JSON, JSONL, CSV, YAML, and a synthetic handwritten-note image. They test source grounding, attribution, action precision and coverage, unsupported claims, scope classification, consensus and conflict detection, uncertainty, inclusive guidance, approval compliance, cross-session comparison, focus adaptation, slide-content diagnosis, Q&A preparation, timing, and user-defined evaluation goals.
 
 Run the repository checks with:
 
