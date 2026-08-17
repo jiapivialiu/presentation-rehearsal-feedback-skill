@@ -1,0 +1,4 @@
+00:01:08 — Reviewer A: On slide 2, I cannot tell which team owns each step without relying on color.
+00:02:46 — Reviewer B: The slide 3 screen sequence was very easy to follow. Keep the numbered callouts.
+00:04:15 — Reviewer A: Add the pilot sample size to slide 4 and state it aloud.
+00:05:36 — Facilitator: The request on slide 5 is specific and actionable.

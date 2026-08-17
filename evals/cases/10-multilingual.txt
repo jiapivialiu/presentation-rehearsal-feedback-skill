@@ -1,0 +1,7 @@
+[Sección: demostración]
+Revisora A: “La explicación inicial fue clara. Cuando cambiaste a English for the API terms, algunas personas no conocían ‘rate limit’.”
+Presentador: “Puedo definir ‘límite de solicitudes’ y conservar el término de la interfaz.”
+Revisor B: “Sí, mantener ambos términos ayudaría. El cambio de idioma no fue el problema; faltó la definición.”
+
+[Closing note, attribution unavailable]
+El ritmo durante las preguntas fue cómodo.

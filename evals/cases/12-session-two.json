@@ -1,0 +1,10 @@
+{
+  "session": "2026-02-10",
+  "target_duration_seconds": 480,
+  "observed_duration_seconds": 474,
+  "feedback": [
+    {"source": "Reviewer A", "section": "opening", "text": "The audience goal is clear now."},
+    {"source": "Reviewer B", "section": "metric chart", "text": "The retention definition still comes after the chart."},
+    {"source": "Reviewer C", "section": "conclusion", "text": "The final action has two owners; clarify who decides."}
+  ]
+}

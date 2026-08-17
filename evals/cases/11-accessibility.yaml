@@ -1,0 +1,10 @@
+source_label: audience-accessibility-notes
+observations:
+  - page: 2
+    note: "The trend lines are distinguished only by red and green."
+  - page: 3
+    note: "The live-demo cursor was difficult to locate from the back row."
+  - page: 4
+    note: "The presenter described the diagram relationships aloud; preserve that explanation."
+  - page: 5
+    note: "A prerecorded video played without captions."

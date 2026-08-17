@@ -1,0 +1,5 @@
+[00:00:04] Facilitator: The opening story made the purpose clear. Keep it.
+[00:02:18] Reviewer A: The phrase “operational resilience” appears before you define it. Define it before the first example.
+[00:05:40] Reviewer A: Are the two response-time figures measured over the same period?
+[00:05:52] Presenter: Yes, both cover the same twelve-week window; I omitted that detail from the explanation.
+[00:09:46] Timekeeper: The rehearsal ended at nine minutes forty-six seconds against an eight-minute target.

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+  <rect width="900" height="420" fill="#fffdf4"/>
+  <path d="M35 95 C170 89 290 100 430 94 S710 91 850 97" stroke="#d5d9e2" fill="none"/>
+  <path d="M35 190 C180 184 300 196 450 189 S710 186 850 192" stroke="#d5d9e2" fill="none"/>
+  <path d="M35 285 C170 279 320 292 470 284 S720 282 850 288" stroke="#d5d9e2" fill="none"/>
+  <text x="55" y="82" font-family="cursive" font-size="34" fill="#203b73" transform="rotate(-2 55 82)">move implementation example earlier</text>
+  <text x="58" y="174" font-family="cursive" font-size="32" fill="#203b73" transform="rotate(1 58 174)">say: cost per year?</text>
+  <text x="60" y="269" font-family="cursive" font-size="31" fill="#203b73" transform="rotate(-1 60 269)">check the [illegible] assumption</text>
+  <text x="60" y="360" font-family="cursive" font-size="30" fill="#23734d">diagram labels ✓</text>
+</svg>

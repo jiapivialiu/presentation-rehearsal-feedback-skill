@@ -1,0 +1,4 @@
+Line 1 — Reviewer A: The pilot result is convincing, but the implementation example arrives too late.
+Line 2 — Presenter: I can introduce the example immediately after the problem statement.
+Line 3 — Reviewer B: The cost estimate needs its time horizon stated aloud.
+Line 4 — Reviewer A: The diagram labels were easy to follow.

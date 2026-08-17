@@ -1,0 +1,29 @@
+cases:
+  - case_id: "01-transcript-only"
+    inputs: ["cases/01-transcript-only.txt"]
+  - case_id: "02-notes-only"
+    inputs: ["cases/02-notes-only.md"]
+  - case_id: "03-processed-transcript-only"
+    inputs: ["cases/03-processed-transcript.jsonl"]
+  - case_id: "04-transcript-plus-handwritten-notes"
+    inputs: ["cases/04-transcript.txt", "cases/04-handwritten-note.svg"]
+  - case_id: "05-speaker-labelled-feedback"
+    inputs: ["cases/05-speaker-labelled.csv"]
+  - case_id: "06-feedback-without-attribution"
+    inputs: ["cases/06-unattributed-feedback.txt"]
+  - case_id: "07-presentation-with-slides"
+    inputs: ["cases/07-slides.md", "cases/07-slide-feedback.txt"]
+  - case_id: "08-presentation-without-slides"
+    inputs: ["cases/08-section-notes.yaml"]
+  - case_id: "09-conflicting-reviewers"
+    inputs: ["cases/09-conflicting-reviewers.json"]
+  - case_id: "10-multilingual-code-switching"
+    inputs: ["cases/10-multilingual.txt"]
+  - case_id: "11-accessibility-feedback"
+    inputs: ["cases/11-accessibility.yaml"]
+  - case_id: "12-multiple-rehearsal-sessions"
+    inputs: ["cases/12-session-one.md", "cases/12-session-two.json"]
+  - case_id: "13-missing-provenance"
+    inputs: ["cases/13-missing-provenance.txt"]
+  - case_id: "14-partial-user-approval"
+    inputs: ["cases/14-analysis-and-approval.md"]

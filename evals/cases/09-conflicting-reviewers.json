@@ -1,0 +1,20 @@
+{
+  "presentation": "quarterly project review",
+  "comments": [
+    {
+      "reviewer": "Reviewer A",
+      "section": "risk forecast",
+      "comment": "Show the full sensitivity table so the assumptions are transparent."
+    },
+    {
+      "reviewer": "Reviewer B",
+      "section": "risk forecast",
+      "comment": "Move the sensitivity table to backup; the main narrative needs only the two boundary cases."
+    },
+    {
+      "reviewer": "Reviewer C",
+      "section": "status summary",
+      "comment": "The red-amber-green summary was concise and useful."
+    }
+  ]
+}
